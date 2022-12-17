@@ -8,9 +8,12 @@ app = Dash(__name__, external_stylesheets=external_stylesheets)
 
 df = pd.read_csv('data_merged.csv')
 
-fig = px.line(df, x="date", y="sales", title='Pink Morsel Sales Over Time')
+COLORS = {
+    'font': '#33BBFF'
+}
 
 app.layout = html.Div([
+    html.H1("Pink Morsel Sales", style={'color': COLORS['font']}),
     html.Div([
         dcc.RadioItems(
             ['North', 'East', 'South', 'West', 'All'],
