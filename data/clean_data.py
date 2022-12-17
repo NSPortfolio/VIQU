@@ -7,8 +7,10 @@ merge = pd.concat([df1, df2])
 final = pd.concat([merge, df3])
 final = final[final['product'] == 'pink morsel']
 final = final.reset_index()
+sales = []
 for i in range(0,5880):
-  final['sales'] = float((str(final['price'][i]).split('$')[1])) * float(final['quantity'][i])
+  sales.append(float((str(final['price'][i]).split('$')[1].replace('\n', ''))) * float(final['quantity'][i]))
+final['sales'] = sales
 final = final.drop('index', axis = 1)
 final = final.drop('price', axis = 1)
 final = final.drop('quantity', axis = 1)
