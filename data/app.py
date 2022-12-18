@@ -12,17 +12,27 @@ COLORS = {
     'font': '#33BBFF'
 }
 
+header = html.H1(
+    "Pink Morsel Sales", 
+    id = "header",
+    style={'color': COLORS['font']})
+
+radio_buttons = dcc.RadioItems(
+    ['North', 'East', 'South', 'West', 'All'],
+    "All",
+    id="radio-button-value",
+    inline=True,
+    style={'width': '48%', 'display': 'inline-block', 'textAlign': 'center'},
+)
+
+figure = dcc.Graph(
+    id="graph-with-radio-buttons",
+)
+
 app.layout = html.Div([
-    html.H1("Pink Morsel Sales", style={'color': COLORS['font']}),
-    html.Div([
-        dcc.RadioItems(
-            ['North', 'East', 'South', 'West', 'All'],
-            'All',
-                id='radio-button-value',
-                inline=True
-            )
-        ], style={'width': '48%', 'display': 'inline-block', 'textAlign': 'center'}),
-    dcc.Graph(id='graph-with-radio-buttons'),
+    header,
+    radio_buttons,
+    figure,
 ])
 
 @app.callback(
@@ -42,3 +52,4 @@ def update_graph(radio_button_value):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
+    
